@@ -26,7 +26,7 @@ body {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  height: 80px;
+  height: 90px;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -55,6 +55,7 @@ body {
 
 .navbar-icon {
   font-size: 1.6rem;
+  color: var(--main-color);
 }
 
 .navbar-logo {
@@ -70,9 +71,56 @@ body {
   position: absolute;
   top: -8px;
   right: -8px;
-  background: var(--main-color);
+  background: var(--secondary-color);
   padding: 0 5px;
   border-radius: 30%;
   color: var(--main-white);
+}
+
+.hero {
+  min-height: calc(100vh - 90px);
+  background: url(../img/hero-bg.jpg) no-repeat center center/cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hero .banner {
+  text-align: center;
+  background-color: var(--main-yellow);
+  display: inline-block;
+  padding: 2rem;
+  opacity: .80;
+}
+
+.hero .banner-title {
+  font-size: 3.4rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 3rem;
+}
+
+.hero .banner-btn {
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 1.2rem;
+  background-color: var(--main-color);
+  color: var(--main-yellow);
+  border: 1px solid var(--main-color);
+  -webkit-transition: all .4s linear;
+  transition: all .4s linear;
+  cursor: pointer;
+}
+
+.hero .banner-btn:hover {
+  background-color: transparent;
+  color: var(--main-color);
 }
 /*# sourceMappingURL=main.css.map */

@@ -25,12 +25,12 @@ body {
 .navbar {
     position: sticky;
     top: 0;
-    height: 80px;
+    height: 90px;
     width: 100%;
     display: flex;
     align-items: center;
     z-index: 1;
-    // background-color:;
+   
 
     &-center {
         width: 100%;
@@ -44,6 +44,7 @@ body {
 
     &-icon {
         font-size: 1.6rem;
+        color: var(--main-color);
     }
 
     &-logo {
@@ -61,10 +62,50 @@ body {
             position: absolute;
             top: -8px;
             right: -8px;
-            background: var(--main-color);
+            background: var(--secondary-color);
             padding: 0 5px;
             border-radius: 30%;
             color: var(--main-white);
+        }
+    }
+}
+
+.hero {
+    min-height: calc(100vh - 90px);
+    background: url(../img/hero-bg.jpg) no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .banner {
+        text-align: center;
+        background-color: var(--main-yellow);
+        display: inline-block;
+        padding: 2rem;
+        opacity: .80;
+
+        &-title {
+            font-size: 3.4rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 3rem;
+        }
+
+        &-btn {
+            padding: 1rem 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 1.2rem;
+            background-color: var(--main-color);
+            color: var(--main-yellow);
+            border: 1px solid var(--main-color);
+            transition: all .4s linear;
+            cursor: pointer;
+
+            &:hover {
+                background-color: transparent;
+                color: var(--main-color);
+            }
         }
     }
 }
