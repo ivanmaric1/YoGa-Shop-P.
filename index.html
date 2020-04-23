@@ -15,7 +15,7 @@
         <span class="navbar-icon">
             <i class="fas fa-bars"></i>
         </span>
-        <img src="img/logo.png" alt="Logo" class='navbar-logo'>
+        <a href="index.html"><img src="img/logo.png" alt="Logo" class='navbar-logo'></a>
         <div class="cart-btn">
             <span class="navbar-icon">
                 <i class="fas fa-cart-plus"></i>
@@ -27,10 +27,37 @@
 <!--Hero-->
 <header class="hero">
     <div class="banner">
-        <h1 class="banner-title">yoga equipment</h1>
-        <button class="banner-btn">Shop now</button>
+        <h1 class="banner-title">oprema za yogu</h1>
+        <button class="banner-btn"> <a href="#proizvodi">Kupuj odmah</a></button>
     </div>
 </header>
-
+<!--Products-->
+<section class="products" id='proizvodi'>
+    <div class="section-title">
+        <h2>naši proizvodi</h2>
+    </div>
+    <div class="products-center">
+   
+    </div>
+</section>
+<!--Cart-->
+    
+<div class="cart-overlay">
+    <div class="cart">
+        <span class="cloes-cart">
+            <i class="fas fa-window-close"></i>
+        </span>
+        <h2>your cart</h2>
+        <div class="cart-content">
+            
+            <div class="cart-footer">
+                <h3>your total : $  <span class='cart-total'>0</span></h3>
+                <button class="clear-cart banner-btn">
+                    clear cart
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
