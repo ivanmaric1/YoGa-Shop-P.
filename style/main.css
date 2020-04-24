@@ -247,6 +247,14 @@ body {
   min-width: 450px;
 }
 
+.cart-overlay .cart .pay-cart {
+  margin-top: 1rem;
+}
+
+.fa-window-close {
+  cursor: pointer;
+}
+
 .showCart {
   -webkit-transform: translateY(0);
           transform: translateY(0);

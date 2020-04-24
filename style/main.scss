@@ -211,6 +211,7 @@ body {
     background: rgba(240,157,81,.5);
     z-index: 2;
     visibility: hidden;
+    
 
     .cart {
         position: fixed;
@@ -225,8 +226,16 @@ body {
         transition: all .4s linear;
         min-width: 450px;
         // transform: translateY(100%);
+
+        .pay-cart {
+            margin-top: 1rem;
+        }
     }
 
+}
+
+.fa-window-close {
+    cursor: pointer;
 }
 
 .showCart {

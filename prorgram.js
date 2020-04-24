@@ -6,6 +6,7 @@ const cartDOM = document.querySelector('.cart')
 const cartOverlay = document.querySelector('.cart-overlay')
 const cartItems = document.querySelector('.cart-items')
 const cartTotal = document.querySelector('.cart-total')
+const cartFooter = document.querySelector('.cart-footer')
 const cartContent = document.querySelector('.cart-content')
 const productDOM = document.querySelector('.products-center')
 
@@ -59,25 +60,34 @@ class UI {
 
 class Cart {
     static showItem() {
-        let items = localStorage.getItem('cart')
-        console.log(items)
-        // items.forEach((item) => {
-        //    let newEl = document.createElement('div')
-        //    newEl.classList.add('cart-item')
-        //    newEl.innerHTML = `
-        //    <img src="img/product-1.jpg" alt="product">
-        //    <div>
-        //        <h4>queen bed</h4>
-        //        <h5>$9</h5>
-        //        <span class='remove-item'>remove</span>
-        //    </div>
-        //    <div>
-        //        <i class="fas fa-chevron-up"></i>
-        //        <p class="item-amount">1</p>
-        //        <i class="fas fa-chevron-down"></i>
-        //    </div>
-        //    `
-        // })
+        let items = JSON.parse(localStorage.getItem('cart')) 
+        let itemsForCart = []
+        items.forEach(item => {
+            for(let i = 0; i < products.length; i++) {
+                if(item.toLowerCase() === products[i].ime) {
+                    itemsForCart.push(products[i])
+                }
+            }
+        })
+        cartContent.innerHTML = ''
+        itemsForCart.forEach((item) => {
+           let newEl = document.createElement('div')
+           newEl.classList.add('cart-item')
+           newEl.innerHTML = `
+           <img src="${item.slika}" alt="${item.ime}">
+           <div>
+               <h4>${item.ime}</h4>
+               <h5>${item.cijena} kn</h5>
+               <span class='remove-item'>remove</span>
+           </div>
+           <div>
+               <i class="fas fa-chevron-up"></i>
+               <p class="item-amount">1</p>
+               <i class="fas fa-chevron-down"></i>
+           </div>
+           `
+           cartContent.append(newEl)
+        })
     }
 }
 
@@ -95,15 +105,23 @@ class Storage {
             localStorage.setItem('cart', JSON.stringify(cart))
         } else {
             let cart = JSON.parse(localStorage.getItem('cart'))  
-            cart.push(item)
+            if(!cart.includes(item)) {
+                cart.push(item)
+            }
             localStorage.setItem('cart', JSON.stringify(cart))
         }
         Cart.showItem()
+    }
+
+    static deleteCart() {
+        localStorage.removeItem('cart')
+        
     }
 }
 
 document.addEventListener('DOMContentLoaded', UI.displayProducts(products))
 
+clearCartBtn.addEventListener('click', Storage.deleteCart)
 productDOM.addEventListener('click', UI.addItemToBag)
 cartOverlay.addEventListener('click', UI.closeCart)
 closeCartBtn.addEventListener('click', UI.closeCart)
