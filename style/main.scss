@@ -95,11 +95,6 @@ body {
 }
 
 .banner-btn {
-    a{
-        text-decoration: none;
-        color: var(--main-yellow);
-    }
-
     padding: 1rem 3rem;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -118,13 +113,21 @@ body {
     }
 }
 
+a button{
+    color: var(--main-white);
+
+    &:hover {
+        color: var(--main-color);
+    }
+}
+
 .products {
     padding: 4rem 0;
 
     .section-title h2 {
         text-align: center;
         font-size: 2.5rem;
-        margin: 2rem 0 3rem 0;
+        margin: 2rem 0 1.5rem 0;
         text-transform: capitalize;
         letter-spacing: 2px;
     }
@@ -211,27 +214,25 @@ body {
     background: rgba(240,157,81,.5);
     z-index: 2;
     visibility: hidden;
-    
+}
 
-    .cart {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 33%;
-        height: 100%;
-        overflow: scroll;
-        background: rgb(231,226,221);
-        z-index: 3;
-        padding: 1.5rem;
-        transition: all .4s linear;
-        min-width: 450px;
-        // transform: translateY(100%);
+.cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 33%;
+    height: 100%;
+    overflow: scroll;
+    background: rgb(231,226,221);
+    z-index: 3;
+    padding: 1.5rem;
+    transition: all .4s linear;
+    min-width: 450px;
+    transform: translateX(100%);
 
-        .pay-cart {
-            margin-top: 1rem;
-        }
+    .pay-cart {
+        margin-top: 1rem;
     }
-
 }
 
 .fa-window-close {
@@ -239,7 +240,7 @@ body {
 }
 
 .showCart {
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
 .transparentBcg {   
@@ -306,5 +307,11 @@ body {
     h3 {
         text-transform: capitalize;
         margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .cart {
+        width: 100%;
     }
 }

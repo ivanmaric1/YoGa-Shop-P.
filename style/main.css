@@ -120,16 +120,19 @@ body {
   cursor: pointer;
 }
 
-.banner-btn a {
-  text-decoration: none;
-  color: var(--main-yellow);
-}
-
 .banner-btn:hover {
   background-color: transparent;
 }
 
 .banner-btn:hover a {
+  color: var(--main-color);
+}
+
+a button {
+  color: var(--main-white);
+}
+
+a button:hover {
   color: var(--main-color);
 }
 
@@ -140,7 +143,7 @@ body {
 .products .section-title h2 {
   text-align: center;
   font-size: 2.5rem;
-  margin: 2rem 0 3rem 0;
+  margin: 2rem 0 1.5rem 0;
   text-transform: capitalize;
   letter-spacing: 2px;
 }
@@ -232,7 +235,7 @@ body {
   visibility: hidden;
 }
 
-.cart-overlay .cart {
+.cart {
   position: fixed;
   top: 0;
   right: 0;
@@ -245,9 +248,11 @@ body {
   -webkit-transition: all .4s linear;
   transition: all .4s linear;
   min-width: 450px;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
 }
 
-.cart-overlay .cart .pay-cart {
+.cart .pay-cart {
   margin-top: 1rem;
 }
 
@@ -256,8 +261,8 @@ body {
 }
 
 .showCart {
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
 }
 
 .transparentBcg {
@@ -328,5 +333,11 @@ body {
 .cart-footer h3 {
   text-transform: capitalize;
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+  .cart {
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=main.css.map */

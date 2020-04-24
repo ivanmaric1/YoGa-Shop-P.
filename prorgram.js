@@ -10,7 +10,6 @@ const cartFooter = document.querySelector('.cart-footer')
 const cartContent = document.querySelector('.cart-content')
 const productDOM = document.querySelector('.products-center')
 
-let cart = []
 
 let products = [
     {ime: 'plava prostirka', cijena: 199.99,slika: 'img/prostirka_plava.jpg'},
@@ -20,17 +19,19 @@ let products = [
     {ime: 'traka', cijena: 199.99,slika: 'img/traka.jpg'},
     {ime: 'zaobljeni blok', cijena: 199.99,slika: 'img/blok_zaobljeni.jpg'},
     {ime: 'siva prostirka', cijena: 299.99,slika: 'img/prostirka_siva.jpg'},
+    {ime: 'sredstvo za pranje', cijena: 49.99,slika: 'img/sredstvo_za_pranje.jpg'},
     {ime: 'crvena prostirka', cijena: 199.99,slika: 'img/prostirka_crvena.jpg'},
+    {ime: 'torba', cijena: 129.99,slika: 'img/torba.jpg'},
+    {ime: 'visoke čarape', cijena: 169.99,slika: 'img/visoke_čarape.jpg'},
+    {ime: 'utezi', cijena: 299.99,slika: 'img/utezi.jpg'}
 ]
 
 
-//display products
 class UI {
     static displayProducts(products) {
         products.forEach(item => {
             let newEl = document.createElement('article')
             newEl.classList.add('product')
-            
             newEl.innerHTML = `
             <div class="img-container">
                 <img src="${item.slika}" alt="${item.ime}" class='product-img'>
@@ -40,28 +41,34 @@ class UI {
                 </button>
             </div>
             <h3>${item.ime}</h3>
-            <h4>${item.cijena} kn</h4>
-            `
+            <h4>${item.cijena} Kn</h4>`
             productDOM.append(newEl)
         });
     }
 
     static addItemToBag(e) {
         if(e.target.classList.contains('bag-btn')) {
-            cartOverlay.classList.add('transparentBcg')
+            UI.showCart()
             Storage.addItemToCart( e.target.parentElement.parentElement.querySelector('h3').innerText)
         }
     }
 
+    static showCart() {
+        cartOverlay.classList.add('transparentBcg')
+        cartDOM.classList.add('showCart')
+    }
+
     static closeCart() {
         cartOverlay.classList.remove('transparentBcg')
+        cartDOM.classList.remove('showCart')
+        
     }
 }
 
 class Cart {
     static showItem() {
-        let items = JSON.parse(localStorage.getItem('cart')) 
         let itemsForCart = []
+        let items = JSON.parse(localStorage.getItem('cart')) 
         items.forEach(item => {
             for(let i = 0; i < products.length; i++) {
                 if(item.toLowerCase() === products[i].ime) {
@@ -77,26 +84,45 @@ class Cart {
            <img src="${item.slika}" alt="${item.ime}">
            <div>
                <h4>${item.ime}</h4>
-               <h5>${item.cijena} kn</h5>
+               <h5>${item.cijena} Kn</h5>
                <span class='remove-item'>remove</span>
            </div>
            <div>
                <i class="fas fa-chevron-up"></i>
                <p class="item-amount">1</p>
                <i class="fas fa-chevron-down"></i>
-           </div>
-           `
+           </div>`
            cartContent.append(newEl)
         })
+        this.countTotal()
+    }
+
+    static deleteItem(e) {
+        e.preventDefault()
+        let itemDel = e.target.parentElement.firstElementChild.innerText
+        if(e.target.classList.contains('remove-item')) {
+            e.target.parentElement.parentElement.remove()
+        }
+        let cart = JSON.parse(localStorage.getItem('cart')).filter(r => r !== itemDel)
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }
+
+    static countTotal() {
+        let total = 0;
+        let items = JSON.parse(localStorage.getItem('cart')) 
+        items.forEach(item => {
+            for(let i = 0; i < products.length; i++) {
+                if(item.toLowerCase() === products[i].ime) {
+                    total += products[i].cijena
+                }
+            }
+        })
+        cartTotal.innerText = total
     }
 }
+    
 
-
-
-               
-            
-
-// loca storage
+// Local Storage
 class Storage {
     static addItemToCart(item) {
         if(localStorage.getItem('cart') === null) {
@@ -115,13 +141,15 @@ class Storage {
 
     static deleteCart() {
         localStorage.removeItem('cart')
-        
     }
 }
 
-document.addEventListener('DOMContentLoaded', UI.displayProducts(products))
+// Events
 
+document.addEventListener('DOMContentLoaded', UI.displayProducts(products))
+cartBtn.addEventListener('click', UI.showCart)
+cartDOM.addEventListener('click', Cart.deleteItem)
 clearCartBtn.addEventListener('click', Storage.deleteCart)
 productDOM.addEventListener('click', UI.addItemToBag)
-cartOverlay.addEventListener('click', UI.closeCart)
+// cartOverlay.addEventListener('click', UI.closeCart)
 closeCartBtn.addEventListener('click', UI.closeCart)
