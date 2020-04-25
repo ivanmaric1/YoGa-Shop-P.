@@ -44,6 +44,12 @@ class UI {
             <h4>${item.cijena} Kn</h4>`
             productDOM.append(newEl)
         });
+        UI.showNumberOfItems()
+    }
+
+    static showNumberOfItems(){
+        let items = JSON.parse(localStorage.getItem('cart')).length
+        cartItems.innerText = items
     }
 
     static addItemToBag(e) {
@@ -51,17 +57,24 @@ class UI {
             UI.showCart()
             Storage.addItemToCart( e.target.parentElement.parentElement.querySelector('h3').innerText)
         }
+        UI.displayProductIsInCart()
     }
 
     static showCart() {
         cartOverlay.classList.add('transparentBcg')
         cartDOM.classList.add('showCart')
+        Cart.showItem()
     }
 
     static closeCart() {
         cartOverlay.classList.remove('transparentBcg')
         cartDOM.classList.remove('showCart')
-        
+    }
+
+    static closeCartOnOverlay(e) {
+        if(e.target.classList.contains('cart-overlay')) {
+            UI.closeCart()
+        }
     }
 }
 
@@ -117,7 +130,7 @@ class Cart {
                 }
             }
         })
-        cartTotal.innerText = total
+        cartTotal.innerText = total.toFixed(2)
     }
 }
     
@@ -141,15 +154,18 @@ class Storage {
 
     static deleteCart() {
         localStorage.removeItem('cart')
+        cartTotal.innerText = 0
+        cartContent.innerText = ''
     }
 }
 
 // Events
 
 document.addEventListener('DOMContentLoaded', UI.displayProducts(products))
+document.body.addEventListener('click', UI.showNumberOfItems)
 cartBtn.addEventListener('click', UI.showCart)
 cartDOM.addEventListener('click', Cart.deleteItem)
 clearCartBtn.addEventListener('click', Storage.deleteCart)
 productDOM.addEventListener('click', UI.addItemToBag)
-// cartOverlay.addEventListener('click', UI.closeCart)
+cartOverlay.addEventListener('click', UI.closeCartOnOverlay)
 closeCartBtn.addEventListener('click', UI.closeCart)
