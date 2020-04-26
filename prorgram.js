@@ -1,4 +1,3 @@
-
 const cartBtn = document.querySelector('.cart-btn')
 const closeCartBtn = document.querySelector('.close-cart')
 const clearCartBtn = document.querySelector('.clear-cart')
@@ -9,7 +8,6 @@ const cartTotal = document.querySelector('.cart-total')
 const cartFooter = document.querySelector('.cart-footer')
 const cartContent = document.querySelector('.cart-content')
 const productDOM = document.querySelector('.products-center')
-
 
 let products = [
     {ime: 'plava prostirka', cijena: 199.99,slika: 'img/prostirka_plava.jpg'},
@@ -25,7 +23,6 @@ let products = [
     {ime: 'visoke čarape', cijena: 169.99,slika: 'img/visoke_čarape.jpg'},
     {ime: 'utezi', cijena: 299.99,slika: 'img/utezi.jpg'}
 ]
-
 
 class UI {
     static displayProducts(products) {
@@ -132,7 +129,6 @@ class Cart {
     }
 }
     
-
 // Local Storage
 class Storage {
     static addItemToCart(item) {
@@ -158,8 +154,8 @@ class Storage {
     }
 }
 
-// Events
 
+// Events
 document.addEventListener('DOMContentLoaded', UI.displayProducts(products))
 document.addEventListener('DOMContentLoaded', UI.showNumberOfItems)
 document.body.addEventListener('click', UI.showNumberOfItems)
