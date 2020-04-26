@@ -44,7 +44,6 @@ class UI {
             <h4>${item.cijena} Kn</h4>`
             productDOM.append(newEl)
         });
-        UI.showNumberOfItems()
     }
 
     static showNumberOfItems(){
@@ -63,7 +62,6 @@ class UI {
     static showCart() {
         cartOverlay.classList.add('transparentBcg')
         cartDOM.classList.add('showCart')
-        Cart.showItem()
     }
 
     static closeCart() {
@@ -156,12 +154,14 @@ class Storage {
         localStorage.removeItem('cart')
         cartTotal.innerText = 0
         cartContent.innerText = ''
+        location.reload();
     }
 }
 
 // Events
 
 document.addEventListener('DOMContentLoaded', UI.displayProducts(products))
+document.addEventListener('DOMContentLoaded', UI.showNumberOfItems)
 document.body.addEventListener('click', UI.showNumberOfItems)
 cartBtn.addEventListener('click', UI.showCart)
 cartDOM.addEventListener('click', Cart.deleteItem)
